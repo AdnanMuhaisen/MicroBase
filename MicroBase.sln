@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBase.PlatformService.Api", "MicroBase.PlatformService.Api\MicroBase.PlatformService.Api.csproj", "{983AB509-816E-496F-A084-F32EB5BC7016}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBase.PlatformService.Api", "MicroBase.PlatformService.Api\MicroBase.PlatformService.Api.csproj", "{983AB509-816E-496F-A084-F32EB5BC7016}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8BCC8939-79CC-4792-A3DE-84F5996492E4}"
 EndProject
@@ -11,11 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{CA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PlatformService", "PlatformService", "{F488051E-7670-42EE-A044-83BB24CE574E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBase.PlatformService.Domain", "MicroBase.PlatformService.Domain\MicroBase.PlatformService.Domain.csproj", "{57C8FA11-9A0E-46A2-A1FD-6A4C01C6E039}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBase.PlatformService.Domain", "MicroBase.PlatformService.Domain\MicroBase.PlatformService.Domain.csproj", "{57C8FA11-9A0E-46A2-A1FD-6A4C01C6E039}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBase.PlatformService.Application", "MicroBase.PlatformService.Application\MicroBase.PlatformService.Application.csproj", "{477A750F-8EC6-414C-B27B-895BBF9B8F29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBase.PlatformService.Application", "MicroBase.PlatformService.Application\MicroBase.PlatformService.Application.csproj", "{477A750F-8EC6-414C-B27B-895BBF9B8F29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBase.PlatformService.Infrastructure", "MicroBase.PlatformService.Infrastructure\MicroBase.PlatformService.Infrastructure.csproj", "{7841967A-3D50-4545-8CF4-50D821935567}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBase.PlatformService.Infrastructure", "MicroBase.PlatformService.Infrastructure\MicroBase.PlatformService.Infrastructure.csproj", "{7841967A-3D50-4545-8CF4-50D821935567}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8S", "K8S", "{9EFF7A2F-7326-4792-A6F6-211E2E8AC3F5}"
+	ProjectSection(SolutionItems) = preProject
+		platforms-depl.yaml = platforms-depl.yaml
+		platforms-np-srv.yaml = platforms-np-srv.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +56,7 @@ Global
 		{57C8FA11-9A0E-46A2-A1FD-6A4C01C6E039} = {F488051E-7670-42EE-A044-83BB24CE574E}
 		{477A750F-8EC6-414C-B27B-895BBF9B8F29} = {F488051E-7670-42EE-A044-83BB24CE574E}
 		{7841967A-3D50-4545-8CF4-50D821935567} = {F488051E-7670-42EE-A044-83BB24CE574E}
+		{9EFF7A2F-7326-4792-A6F6-211E2E8AC3F5} = {8BCC8939-79CC-4792-A3DE-84F5996492E4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {602B83B9-9B85-43DD-9052-B55665BD57A3}
