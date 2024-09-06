@@ -1,0 +1,40 @@
+﻿using Mapster;
+using MicroBase.PlatformService.Api.Commands;
+using MicroBase.PlatformService.Api.Dtos;
+using MicroBase.PlatformService.Application.Interfaces;
+using MicroBase.PlatformService.Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
+
+namespace MicroBase.PlatformService.Api.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class PlatformsController(IPlatformService platformService) : ControllerBase
+{
+    [HttpGet]
+    public async Task<IActionResult> Get(CancellationToken cancellationToken)
+    {
+        return Ok((await platformService.GetAllAsync(cancellationToken)).Adapt<List<PlatformDto>>());
+    }
+
+    [HttpGet("{id:int}")]
+    public async Task<IActionResult> GetValue([FromRoute] int id, CancellationToken cancellationToken)
+    {
+        var result = await platformService.GetByIdAsync(id, cancellationToken);
+
+        return result.IsError ? NotFound() : Ok(result.Value.Adapt<PlatformDto>());
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Post([FromBody] CreatePlatformCommand createPlatformCommand,CancellationToken cancellationToken)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var result = await platformService.CreateAsync(createPlatformCommand.Adapt<Platform>(), cancellationToken);
+
+        return result.IsError ? BadRequest(result.Errors) : Ok(result.Value);
+    }
+}
