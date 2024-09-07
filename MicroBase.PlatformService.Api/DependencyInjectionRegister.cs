@@ -2,6 +2,7 @@
 using FluentValidation.AspNetCore;
 using MicroBase.PlatformService.Application.Interfaces;
 using MicroBase.PlatformService.Infrastructure.Data;
+using MicroBase.PlatformService.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace MicroBase.PlatformService.Api;
@@ -22,6 +23,7 @@ public static class DependencyInjectionRegister
 
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddHttpClient();
         services.AddDbContext<AppDbContext>(options =>
         {
             options
@@ -30,6 +32,7 @@ public static class DependencyInjectionRegister
                 .UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
         });
 
+        services.AddScoped<ICommandServiceClient, HttpCommandServiceClient>();
         services.AddScoped<IPlatformService, Infrastructure.Services.PlatformService>();
 
         return services;

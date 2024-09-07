@@ -9,7 +9,7 @@ namespace MicroBase.PlatformService.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class PlatformsController(IPlatformService platformService) : ControllerBase
+public class PlatformsController(IPlatformService platformService, ICommandServiceClient commandServiceClient) : ControllerBase
 {
     [HttpGet(Name = nameof(Get))]
     public async Task<IActionResult> Get(CancellationToken cancellationToken)
@@ -34,6 +34,15 @@ public class PlatformsController(IPlatformService platformService) : ControllerB
         }
 
         var result = await platformService.CreateAsync(createPlatformCommand.Adapt<Platform>(), cancellationToken);
+
+        try
+        {
+            await commandServiceClient.SendPlatformAsync(result.Value.Adapt<Platform>(), cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
 
         return result.IsError ? BadRequest(result.Errors) : CreatedAtRoute(nameof(GetValue), new { id = result.Value.Id }, result.Value);
     }

@@ -1,4 +1,5 @@
 using MicroBase.PlatformService.Api;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddPresentation()
     .AddInfrastructure(builder.Configuration);
+Console.WriteLine($"{Assembly.GetExecutingAssembly().FullName} - Running Env is {builder.Environment.EnvironmentName}");
 
 var app = builder.Build();
 
