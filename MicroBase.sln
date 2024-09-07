@@ -19,9 +19,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBase.PlatformService.I
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8S", "K8S", "{9EFF7A2F-7326-4792-A6F6-211E2E8AC3F5}"
 	ProjectSection(SolutionItems) = preProject
-		platforms-depl.yaml = platforms-depl.yaml
-		platforms-np-srv.yaml = platforms-np-srv.yaml
+		platforms-deployment.yaml = platforms-deployment.yaml
+		platforms-nodeport-service.yaml = platforms-nodeport-service.yaml
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommandService", "CommandService", "{CC063789-5782-412C-8FAE-5796793627F7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBase.CommandService.Api", "MicroBase.CommandService.Api\MicroBase.CommandService.Api.csproj", "{C94C45EC-106D-4531-97F4-E0BA93F99C18}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBase.CommandService.Domain", "MicroBase.CommandService.Domain\MicroBase.CommandService.Domain.csproj", "{9EE4520C-C498-405F-8D59-110385EC2B4A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBase.CommandService.Application", "MicroBase.CommandService.Application\MicroBase.CommandService.Application.csproj", "{452D9FA9-A333-4469-AC5E-32C32DD18F5E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBase.CommandService.Infrastructure", "MicroBase.CommandService.Infrastructure\MicroBase.CommandService.Infrastructure.csproj", "{8823DCC1-EEB5-48E1-9EC4-5FA1372B4BF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +55,22 @@ Global
 		{7841967A-3D50-4545-8CF4-50D821935567}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7841967A-3D50-4545-8CF4-50D821935567}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7841967A-3D50-4545-8CF4-50D821935567}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C94C45EC-106D-4531-97F4-E0BA93F99C18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C94C45EC-106D-4531-97F4-E0BA93F99C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C94C45EC-106D-4531-97F4-E0BA93F99C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C94C45EC-106D-4531-97F4-E0BA93F99C18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EE4520C-C498-405F-8D59-110385EC2B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EE4520C-C498-405F-8D59-110385EC2B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EE4520C-C498-405F-8D59-110385EC2B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EE4520C-C498-405F-8D59-110385EC2B4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{452D9FA9-A333-4469-AC5E-32C32DD18F5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{452D9FA9-A333-4469-AC5E-32C32DD18F5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{452D9FA9-A333-4469-AC5E-32C32DD18F5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{452D9FA9-A333-4469-AC5E-32C32DD18F5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8823DCC1-EEB5-48E1-9EC4-5FA1372B4BF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8823DCC1-EEB5-48E1-9EC4-5FA1372B4BF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8823DCC1-EEB5-48E1-9EC4-5FA1372B4BF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8823DCC1-EEB5-48E1-9EC4-5FA1372B4BF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +83,11 @@ Global
 		{477A750F-8EC6-414C-B27B-895BBF9B8F29} = {F488051E-7670-42EE-A044-83BB24CE574E}
 		{7841967A-3D50-4545-8CF4-50D821935567} = {F488051E-7670-42EE-A044-83BB24CE574E}
 		{9EFF7A2F-7326-4792-A6F6-211E2E8AC3F5} = {8BCC8939-79CC-4792-A3DE-84F5996492E4}
+		{CC063789-5782-412C-8FAE-5796793627F7} = {CA5A3325-A08B-480D-9519-BC6260473E2E}
+		{C94C45EC-106D-4531-97F4-E0BA93F99C18} = {CC063789-5782-412C-8FAE-5796793627F7}
+		{9EE4520C-C498-405F-8D59-110385EC2B4A} = {CC063789-5782-412C-8FAE-5796793627F7}
+		{452D9FA9-A333-4469-AC5E-32C32DD18F5E} = {CC063789-5782-412C-8FAE-5796793627F7}
+		{8823DCC1-EEB5-48E1-9EC4-5FA1372B4BF0} = {CC063789-5782-412C-8FAE-5796793627F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {602B83B9-9B85-43DD-9052-B55665BD57A3}
