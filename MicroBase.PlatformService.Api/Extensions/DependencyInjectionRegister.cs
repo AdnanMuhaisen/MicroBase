@@ -5,7 +5,7 @@ using MicroBase.PlatformService.Infrastructure.Data;
 using MicroBase.PlatformService.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace MicroBase.PlatformService.Api;
+namespace MicroBase.PlatformService.Api.Extensions;
 
 public static class DependencyInjectionRegister
 {

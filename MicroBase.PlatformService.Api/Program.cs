@@ -1,4 +1,4 @@
-using MicroBase.PlatformService.Api;
+using MicroBase.PlatformService.Api.Extensions;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,5 +18,6 @@ app.UseSwaggerUI();
 // app.UseHttpsRedirection();
 
 app.MapControllers();
+await app.MigrateDatabaseAsync(app.Environment, CancellationToken.None);
 
 app.Run();

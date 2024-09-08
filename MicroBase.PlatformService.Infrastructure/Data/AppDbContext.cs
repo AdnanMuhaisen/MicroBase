@@ -29,6 +29,10 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Platform>()
             .Property(t => t.Publisher)
             .HasMaxLength(200);
+
+        modelBuilder.Entity<Platform>()
+            .Property(t => t.Cost)
+            .HasPrecision(8, 2);
         #endregion
     }
 }
