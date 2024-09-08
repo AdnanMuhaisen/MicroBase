@@ -25,6 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8S", "K8S", "{9EFF7A2F-732
 		mssql-platform-service-deployment.yaml = mssql-platform-service-deployment.yaml
 		platforms-deployment.yaml = platforms-deployment.yaml
 		platforms-nodeport-service.yaml = platforms-nodeport-service.yaml
+		rabbitmq-deployment.yaml = rabbitmq-deployment.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommandService", "CommandService", "{CC063789-5782-412C-8FAE-5796793627F7}"
