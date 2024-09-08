@@ -1,16 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Mapster;
+using MicroBase.CommandService.Api.Dtos;
+using MicroBase.CommandService.Application.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MicroBase.CommandService.Api.Controllers;
 
 [ApiController]
 [Route("api/command-service/[controller]")]
-public class PlatformsController : ControllerBase
+public class PlatformsController(IPlatformService platformService) : ControllerBase
 {
-    [HttpPost]
-    public async Task<IActionResult> Post()
+    [HttpGet]
+    public async Task<IActionResult> Get(CancellationToken cancellationToken)
     {
-        Console.WriteLine("Post from Command Service");
-
-        return Ok();
+        return Ok((await platformService.GetAllAsync(cancellationToken)).Adapt<IEnumerable<PlatformDto>>());
     }
 }
