@@ -1,4 +1,5 @@
-﻿using Mapster;
+﻿using ErrorOr;
+using Mapster;
 using MicroBase.PlatformService.Api.Commands;
 using MicroBase.PlatformService.Api.Dtos;
 using MicroBase.PlatformService.Application.Interfaces;
@@ -34,7 +35,7 @@ public class PlatformsController(IPlatformService platformService, ICommandServi
         }
 
         var result = await platformService.CreateAsync(createPlatformCommand.Adapt<Platform>(), cancellationToken);
-
+        
         try
         {
             await commandServiceClient.SendPlatformAsync(result.Value.Adapt<Platform>(), cancellationToken);

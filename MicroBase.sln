@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBase.PlatformService.I
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8S", "K8S", "{9EFF7A2F-7326-4792-A6F6-211E2E8AC3F5}"
 	ProjectSection(SolutionItems) = preProject
+		commands-deployment.yaml = commands-deployment.yaml
+		ingress-service.yaml = ingress-service.yaml
 		platforms-deployment.yaml = platforms-deployment.yaml
 		platforms-nodeport-service.yaml = platforms-nodeport-service.yaml
 	EndProjectSection
