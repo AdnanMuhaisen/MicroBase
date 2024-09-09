@@ -31,7 +31,8 @@ public class MessageBusClient : IMessageBusClient, IDisposable
             _connection = connectionFactory.CreateConnection();
             _channel = _connection.CreateModel();
             _channel.ExchangeDeclare(exchange: _rabbitMQSettings.Exchange, type: ExchangeType.Fanout);
-            _connection.ConnectionShutdown += (sender, args) => Console.WriteLine("RabbitMQ Connection Shutdown");
+            _connection.ConnectionShutdown += (sender, args)
+                => Console.WriteLine($"{typeof(MessageBusClient).FullName}: RabbitMQ Connection Shutdown at {DateTime.Now}");
             _logger.LogInformation($"{typeof(MessageBusClient).FullName} Connected to the message bus");
         }
         catch (Exception ex)
@@ -53,7 +54,7 @@ public class MessageBusClient : IMessageBusClient, IDisposable
         {
             _SendMessage(message);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             _logger.LogError(ex.Message);
         }
