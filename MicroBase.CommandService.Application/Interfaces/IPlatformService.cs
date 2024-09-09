@@ -10,4 +10,6 @@ public interface IPlatformService
     Task<ErrorOr<Platform>> GetByIdAsync(int id, CancellationToken cancellationToken);
 
     Task<ErrorOr<Platform>> CreateAsync(Platform platform, CancellationToken cancellationToken);
+
+    Task<bool> ExternalPlatformExistsAsync(int externalPlatformId, CancellationToken cancellationToken);
 }

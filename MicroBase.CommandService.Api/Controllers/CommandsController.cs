@@ -23,7 +23,11 @@ public class CommandsController(ICommandService commandService, IPlatformService
     [HttpGet("{commandId:int}", Name = nameof(GetValue))]
     public async Task<IActionResult> GetValue([FromRoute] int platformId, [FromRoute] int commandId, CancellationToken cancellationToken)
     {
-        return Ok((await commandService.GetById(platformId, commandId, cancellationToken)).Adapt<CommandDto>());
+        var result = await commandService.GetById(platformId, commandId, cancellationToken);
+
+        return result.IsError
+            ? NotFound()
+            : Ok(result.Value.Adapt<CommandDto>());
     }
 
     [HttpPost]
@@ -34,13 +38,13 @@ public class CommandsController(ICommandService commandService, IPlatformService
             return NotFound("Platform not found");
         }
 
-        var command = createCommandRequest.CommandLine.Adapt<Command>();
+        var command = createCommandRequest.Adapt<Command>();
         command.PlatformId = platformId;
 
         var result = await commandService.CreateAsync(command, cancellationToken);
 
         return result.IsError
             ? BadRequest(result.Errors)
-            : CreatedAtRoute(nameof(GetValue), new { platformId = result.Value.PlatformId, commandId = result.Value.Id }, result.Value);
+            : CreatedAtRoute(nameof(GetValue), new { platformId = result.Value.PlatformId, commandId = result.Value.Id }, result.Value.Adapt<CommandDto>());
     }
 }

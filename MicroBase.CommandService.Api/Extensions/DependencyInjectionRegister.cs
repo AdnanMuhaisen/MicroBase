@@ -2,7 +2,9 @@
 using FluentValidation.AspNetCore;
 using MicroBase.CommandService.Application.Interfaces;
 using MicroBase.CommandService.Infrastructure.Data;
+using MicroBase.CommandService.Infrastructure.Options;
 using MicroBase.CommandService.Infrastructure.Services;
+using MicroBase.CommandService.Infrastructure.Services.BackgroundServices;
 using Microsoft.EntityFrameworkCore;
 
 namespace MicroBase.CommandService.Api.Extensions;
@@ -31,7 +33,15 @@ public static class DependencyInjectionRegister
                 .UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
         });
 
+        services
+            .AddOptions<RabbitMQSettings>()
+            .Bind(configuration.GetSection("RabbitMQSettings"))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
+        services.AddHostedService<MessageBusSubscriber>();
         services.AddScoped<IPlatformService, PlatformService>();
+        services.AddSingleton<IEventProcessingService, EventProcessingService>();
         services.AddScoped<ICommandService, Infrastructure.Services.CommandService>();
 
         return services;

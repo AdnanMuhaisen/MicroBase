@@ -16,7 +16,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 // app.UseHttpsRedirection();
-
+await app.MigrateDatabaseAsync(app.Environment, CancellationToken.None);
 app.MapControllers();
 
 app.Run();

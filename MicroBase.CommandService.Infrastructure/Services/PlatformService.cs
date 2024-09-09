@@ -32,4 +32,12 @@ public class PlatformService(AppDbContext appDbContext) : IPlatformService
 
         return await appDbContext.SaveChangesAsync(cancellationToken) > 0 ? platform : Error.Unexpected();
     }
+
+    public async Task<bool> ExternalPlatformExistsAsync(int externalPlatformId, CancellationToken cancellationToken)
+    {
+        return await appDbContext
+            .Platforms
+            .AsNoTracking()
+            .AnyAsync(p => p.ExternalId == externalPlatformId, cancellationToken);
+    }
 }
