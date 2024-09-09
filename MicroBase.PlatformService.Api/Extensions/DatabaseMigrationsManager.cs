@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MicroBase.PlatformService.Api.Extensions;
 
-public static class DatabaseManager
+public static class DatabaseMigrationsManager
 {
     public static async Task MigrateDatabaseAsync(this WebApplication app, IWebHostEnvironment environment, CancellationToken cancellationToken = default)
     {
