@@ -4,13 +4,15 @@ using MicroBase.PlatformService.Api.Commands;
 using MicroBase.PlatformService.Api.Dtos;
 using MicroBase.PlatformService.Application.Interfaces;
 using MicroBase.PlatformService.Domain.Entities;
+using MicroBase.PlatformService.Domain.Enums;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MicroBase.PlatformService.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class PlatformsController(IPlatformService platformService, ICommandServiceClient commandServiceClient) : ControllerBase
+public class PlatformsController(IPlatformService platformService, ICommandServiceClient commandServiceClient, IMessageBusClient messageBusClient) : ControllerBase
 {
     [HttpGet(Name = nameof(Get))]
     public async Task<IActionResult> Get(CancellationToken cancellationToken)
@@ -35,15 +37,20 @@ public class PlatformsController(IPlatformService platformService, ICommandServi
         }
 
         var result = await platformService.CreateAsync(createPlatformCommand.Adapt<Platform>(), cancellationToken);
-        
-        try
-        {
-            await commandServiceClient.SendPlatformAsync(result.Value.Adapt<Platform>(), cancellationToken);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+
+        // synch messages
+        //try
+        //{
+        //    await commandServiceClient.SendPlatformAsync(result.Value.Adapt<Platform>(), cancellationToken);
+        //}
+        //catch (Exception ex)
+        //{
+        //    Console.WriteLine(ex.Message);
+        //}
+
+        var platformToPublish = result.Value.Adapt<PlatformToPublish>();
+        platformToPublish.Event = PlatformEvent.Published;
+        messageBusClient.PublishNewPlatform(platformToPublish);
 
         return result.IsError ? BadRequest(result.Errors) : CreatedAtRoute(nameof(GetValue), new { id = result.Value.Id }, result.Value);
     }
