@@ -19,6 +19,8 @@ public static class DependencyInjectionRegister
             .AddFluentValidationAutoValidation()
             .AddValidatorsFromAssembly(typeof(DependencyInjectionExtensions).Assembly);
 
+        services.AddGrpc();
+
         return services;
     }
 
