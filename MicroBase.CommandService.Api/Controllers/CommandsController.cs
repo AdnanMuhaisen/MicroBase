@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MicroBase.CommandService.Api.Controllers;
 
 [ApiController]
-[Route("api/platforms/{platformId:int}/[controller]")]
+[Route("api/command-service/platforms/{platformId:int}/[controller]")]
 public class CommandsController(ICommandService commandService, IPlatformService platformService) : ControllerBase
 {
     [HttpGet]

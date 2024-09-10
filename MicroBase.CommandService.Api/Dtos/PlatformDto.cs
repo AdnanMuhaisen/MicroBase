@@ -1,6 +1,6 @@
 ﻿namespace MicroBase.CommandService.Api.Dtos;
 
-public class PlatformDto
+public record PlatformDto
 {
     public int Id { get; set; }
 

@@ -37,17 +37,6 @@ public class PlatformsController(IPlatformService platformService, ICommandServi
         }
 
         var result = await platformService.CreateAsync(createPlatformCommand.Adapt<Platform>(), cancellationToken);
-
-        // synch messages
-        //try
-        //{
-        //    await commandServiceClient.SendPlatformAsync(result.Value.Adapt<Platform>(), cancellationToken);
-        //}
-        //catch (Exception ex)
-        //{
-        //    Console.WriteLine(ex.Message);
-        //}
-
         var platformToPublish = result.Value.Adapt<PlatformToPublish>();
         platformToPublish.Event = PlatformEvent.Published;
         messageBusClient.PublishNewPlatform(platformToPublish);
