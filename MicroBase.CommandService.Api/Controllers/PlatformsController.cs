@@ -10,6 +10,7 @@ namespace MicroBase.CommandService.Api.Controllers;
 public class PlatformsController(IPlatformService platformService) : ControllerBase
 {
     [HttpGet]
+    [ProducesResponseType<IEnumerable<PlatformDto>>(StatusCodes.Status200OK)]
     public async Task<IActionResult> Get(CancellationToken cancellationToken)
     {
         return Ok((await platformService.GetAllAsync(cancellationToken)).Adapt<IEnumerable<PlatformDto>>());

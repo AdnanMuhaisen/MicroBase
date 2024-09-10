@@ -13,6 +13,8 @@ namespace MicroBase.CommandService.Api.Controllers;
 public class CommandsController(ICommandService commandService, IPlatformService platformService) : ControllerBase
 {
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType<IEnumerable<CommandDto>>(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetByPlatform(int platformId, CancellationToken cancellationToken)
     {
         return (await platformService.GetByIdAsync(platformId, cancellationToken)) == Error.NotFound()
@@ -21,6 +23,8 @@ public class CommandsController(ICommandService commandService, IPlatformService
     }
 
     [HttpGet("{commandId:int}", Name = nameof(GetValue))]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType<CommandDto>(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetValue([FromRoute] int platformId, [FromRoute] int commandId, CancellationToken cancellationToken)
     {
         var result = await commandService.GetById(platformId, commandId, cancellationToken);
@@ -31,6 +35,9 @@ public class CommandsController(ICommandService commandService, IPlatformService
     }
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Post([FromBody] CreateCommandRequest createCommandRequest, [FromRoute] int platformId, CancellationToken cancellationToken)
     {
         if ((await platformService.GetByIdAsync(platformId, cancellationToken)) == Error.NotFound())
