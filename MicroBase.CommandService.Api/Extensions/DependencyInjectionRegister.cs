@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using MicroBase.CommandService.Api.Grpc.Clients;
 using MicroBase.CommandService.Application.Interfaces;
 using MicroBase.CommandService.Infrastructure.Data;
 using MicroBase.CommandService.Infrastructure.Options;
@@ -19,6 +20,7 @@ public static class DependencyInjectionRegister
         services
             .AddFluentValidationAutoValidation()
             .AddValidatorsFromAssembly(typeof(DependencyInjectionRegister).Assembly);
+        services.AddScoped<IGrpcPlatformDataClient, GrpcPlatformDataClient>();
 
         return services;
     }
@@ -40,7 +42,7 @@ public static class DependencyInjectionRegister
             .ValidateOnStart();
 
         services.AddHostedService<MessageBusSubscriber>();
-        services.AddScoped<IPlatformService, PlatformService>();
+        services.AddScoped<IPlatformService, Infrastructure.Services.PlatformService>();
         services.AddSingleton<IEventProcessingService, EventProcessingService>();
         services.AddScoped<ICommandService, Infrastructure.Services.CommandService>();
 
