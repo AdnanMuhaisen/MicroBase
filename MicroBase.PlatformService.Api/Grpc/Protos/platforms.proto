@@ -3,7 +3,7 @@ syntax = "proto3";
 option csharp_namespace = "MicroBase.PlatformService.Api";
 
 service GrpcPlatform{
-	rpc GetAllRequest (GrpcPlatformModel) returns (PlatformResponse);
+	rpc GetAllPlatforms (GetAllRequest) returns (PlatformResponse);
 }
 
 message GetAllRequest {}
