@@ -32,19 +32,18 @@ MicroBase is designed as a distributed system where each service is deployed in 
 ## Getting Started
 Prerequisites
 To run this project, you'll need the following installed:
-.NET SDK
-Docker
-Kubernetes
-SQL Server
+- .NET SDK
+- Docker Desktop
+- Kubernetes
+- SQL Server
 
 ## Installation
 Clone the repository:
 > git clone https://github.com/your-username/microbase.git
-> 
-Navigate to the project directory:
+
 Build and run the services using Docker and Kubernetes:
 navigate the K8S folder and run the following command for each yaml file
 > kubectl apply -f [file.yaml]
-> 
-Contributing
+
+## Contributing
 Feel free to fork this repository and create pull requests to improve the project. Contributions are welcome!
