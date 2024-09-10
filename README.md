@@ -39,7 +39,7 @@ To run this project, you'll need the following installed:
 
 ## Installation
 Clone the repository:
-> git clone https://github.com/your-username/microbase.git
+> https://github.com/AdnanMuhaisen/MicroBase.git
 
 Build and run the services using Docker and Kubernetes:
 navigate the K8S folder and run the following command for each yaml file
