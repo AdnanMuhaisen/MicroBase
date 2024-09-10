@@ -7,6 +7,7 @@ using System.Text.Json;
 
 namespace MicroBase.PlatformService.Infrastructure.Services;
 
+[Obsolete($"Use {nameof(MessageBusClient)} for asynchronous messaging instead of synchronous.")]
 public class HttpCommandServiceClient : ICommandServiceClient
 {
     private readonly HttpClient _httpClient;

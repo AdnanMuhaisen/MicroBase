@@ -42,7 +42,7 @@ public static class DependencyInjectionRegister
             .ValidateOnStart();
 
         services.AddScoped<IMessageBusClient, MessageBusClient>();
-        services.AddScoped<ICommandServiceClient, HttpCommandServiceClient>();
+        // services.AddScoped<ICommandServiceClient, HttpCommandServiceClient>();
         services.AddScoped<IPlatformService, Infrastructure.Services.PlatformService>();
 
         return services;
